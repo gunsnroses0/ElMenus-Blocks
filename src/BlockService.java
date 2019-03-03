@@ -1,4 +1,6 @@
 import Commands.Command;
+import Commands.CreateBlock;
+import Commands.GetBlocks;
 
 //import Commands.delete.DeleteMessage;
 //import Commands.get.GetMessage;
@@ -17,7 +19,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeoutException;
 
 public class BlockService {
-	private static final String RPC_QUEUE_NAME = "restaurants-request";
+	private static final String RPC_QUEUE_NAME = "block-request";
 
 	public static void main(String[] argv) {
 
@@ -52,14 +54,12 @@ public class BlockService {
 						Command cmd = null;
 						System.out.println(command);
 						switch (command) {
-						case "CreateRestaurants":
+						case "CreateBlock":
+							cmd = new CreateBlock();
 							break;
-						case "RetrieveRestaurants":
+						case "RetrieveBlock":
+							cmd = new GetBlocks();
 							break;
-//                            case "UpdateMessages":   cmd = new UpdateMessage();
-//                                break;
-//                            case "DeleteMessages":   cmd = new DeleteMessage();
-//                                break;
 						}
 
 						HashMap<String, Object> props = new HashMap<String, Object>();
