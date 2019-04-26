@@ -17,6 +17,7 @@ import org.bson.types.ObjectId;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
@@ -41,12 +42,13 @@ public class Block {
 	}
 
 	public static HashMap<String, Object> create(HashMap<String, Object> atrributes) throws ParseException {
-
+		MongoClientOptions.Builder options = MongoClientOptions.builder()
+	            .connectionsPerHost(DbPoolCount);
 		MongoClientURI uri = new MongoClientURI(
-				host);
-
+				host,options);
 		MongoClient mongoClient = new MongoClient(uri);
 		MongoDatabase database = mongoClient.getDatabase("El-Menus");
+
 
 		// Retrieving a collection
 		MongoCollection<Document> collection = database.getCollection("blocks");
@@ -63,11 +65,13 @@ public class Block {
 	}
 	
 	public static ArrayList<HashMap<String, Object>> get(String blockId) {
+		MongoClientOptions.Builder options = MongoClientOptions.builder()
+	            .connectionsPerHost(DbPoolCount);
 		MongoClientURI uri = new MongoClientURI(
-				host);
-
+				host,options);
 		MongoClient mongoClient = new MongoClient(uri);
 		MongoDatabase database = mongoClient.getDatabase("El-Menus");
+
 
 		// Retrieving a collection
 		MongoCollection<Document> collection = database.getCollection("blocks");
