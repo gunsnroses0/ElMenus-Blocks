@@ -1,4 +1,4 @@
-POST,/block,CreateBlock
+POST,/block/,CreateBlock
 GET,/block/id,GetBlocks
 POST,/block/addCommand/,AddCommand
 POST,/block/updateCommand/,UpdateCommand
