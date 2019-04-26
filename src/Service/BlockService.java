@@ -28,6 +28,8 @@ import java.util.regex.Pattern;
 public class BlockService {
 	private static String RPC_QUEUE_NAME = "block-request";
 	public static HashMap<String, String> config;
+	static String host = System.getenv("MONGO_URI");
+
 	private static int threadPoolCount=4;
 
 	public static String getRPC_QUEUE_NAME() {
