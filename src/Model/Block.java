@@ -38,7 +38,7 @@ public class Block {
 		DbPoolCount = dbPoolCount;
 	}
 
-	public static HashMap<String, Object> create(HashMap<String, Object> atrributes) {
+	public static HashMap<String, Object> create(HashMap<String, Object> atrributes) throws ParseException {
 
 		MongoClientURI uri = new MongoClientURI(
 				"mongodb://localhost");
@@ -55,7 +55,9 @@ public class Block {
 		}
 		collection.insertOne(newBlock);
 
-		return atrributes;
+		JSONParser parser = new JSONParser();
+		HashMap<String, Object> returnValue = Command.jsonToMap((JSONObject) parser.parse(newBlock.toJson()));
+		return returnValue;
 	}
 	
 	public static ArrayList<HashMap<String, Object>> get(String blockId) {
