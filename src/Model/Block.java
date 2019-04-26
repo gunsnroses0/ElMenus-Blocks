@@ -30,6 +30,8 @@ public class Block {
 	private static final String COLLECTION_NAME = "blocks";
 
 	private static MongoCollection<Document> collection = null;
+	static String host = System.getenv("MONGO_URI");
+
 	private static int DbPoolCount = 4;
 	public static int getDbPoolCount() {
 		return DbPoolCount;
@@ -41,7 +43,7 @@ public class Block {
 	public static HashMap<String, Object> create(HashMap<String, Object> atrributes) throws ParseException {
 
 		MongoClientURI uri = new MongoClientURI(
-				"mongodb://localhost");
+				host);
 
 		MongoClient mongoClient = new MongoClient(uri);
 		MongoDatabase database = mongoClient.getDatabase("El-Menus");
@@ -62,7 +64,7 @@ public class Block {
 	
 	public static ArrayList<HashMap<String, Object>> get(String blockId) {
 		MongoClientURI uri = new MongoClientURI(
-				"mongodb://localhost");
+				host);
 
 		MongoClient mongoClient = new MongoClient(uri);
 		MongoDatabase database = mongoClient.getDatabase("El-Menus");
