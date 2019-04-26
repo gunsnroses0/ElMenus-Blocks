@@ -30,6 +30,13 @@ public class Block {
 	private static final String COLLECTION_NAME = "blocks";
 
 	private static MongoCollection<Document> collection = null;
+	private static int DbPoolCount = 4;
+	public static int getDbPoolCount() {
+		return DbPoolCount;
+	}
+	public static void setDbPoolCount(int dbPoolCount) {
+		DbPoolCount = dbPoolCount;
+	}
 
 	public static HashMap<String, Object> create(HashMap<String, Object> atrributes) {
 

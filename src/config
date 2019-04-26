@@ -1,0 +1,10 @@
+POST,/block,CreateBlock
+GET,/block/id,GetBlocks
+POST,/block/addCommand/,AddCommand
+POST,/block/updateCommand/,UpdateCommand
+POST,/block/deleteCommand/,DeleteCommand
+POST,/block/updateThreadPoolCount/,UpdateThreadPoolCount
+POST,/block/updateDBPoolCount/,UpdateDBPoolCount
+GET,/block/freeze/,FreezeQueue
+GET,/block/resume/,ResumeQueue
+POST,/block,Test
