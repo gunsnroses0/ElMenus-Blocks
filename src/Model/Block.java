@@ -41,12 +41,20 @@ public class Block {
 		DbPoolCount = dbPoolCount;
 	}
 
-	public static HashMap<String, Object> create(HashMap<String, Object> atrributes) throws ParseException {
-		MongoClientOptions.Builder options = MongoClientOptions.builder()
-	            .connectionsPerHost(DbPoolCount);
-		MongoClientURI uri = new MongoClientURI(
+	static MongoClientOptions.Builder options = null;
+	static MongoClientURI uri = null;
+	static MongoClient mongoClient = null; 
+	
+	public static void initializeDb() {
+		options = MongoClientOptions.builder()
+				.connectionsPerHost(DbPoolCount);
+		uri = new MongoClientURI(
 				host,options);
-		MongoClient mongoClient = new MongoClient(uri);
+		mongoClient = new MongoClient(uri);
+			
+	}
+	public static HashMap<String, Object> create(HashMap<String, Object> atrributes) throws ParseException {
+
 		MongoDatabase database = mongoClient.getDatabase("El-Menus");
 
 
@@ -65,11 +73,7 @@ public class Block {
 	}
 	
 	public static ArrayList<HashMap<String, Object>> get(String blockId) {
-		MongoClientOptions.Builder options = MongoClientOptions.builder()
-	            .connectionsPerHost(DbPoolCount);
-		MongoClientURI uri = new MongoClientURI(
-				host,options);
-		MongoClient mongoClient = new MongoClient(uri);
+
 		MongoDatabase database = mongoClient.getDatabase("El-Menus");
 
 
@@ -93,8 +97,7 @@ public class Block {
 				e.printStackTrace();
 			}
 		}
-		
-		mongoClient.close();
+
         return blocks;
 		
 	}

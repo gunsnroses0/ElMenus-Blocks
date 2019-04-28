@@ -2,6 +2,7 @@ package Service;
 import Commands.Command;
 import Commands.CreateBlock;
 import Commands.GetBlocks;
+import Model.Block;
 
 //import Commands.delete.DeleteMessage;
 //import Commands.get.GetMessage;
@@ -42,6 +43,7 @@ public class BlockService {
 	public static void main(String[] argv) {
 		run();
 		ServiceController.run();
+		Block.initializeDb();
 	}
 
 	public static void run() {
